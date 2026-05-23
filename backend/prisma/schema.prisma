@@ -1,0 +1,47 @@
+// File: prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  nim       String   @id
+  name      String
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  @@map("users")
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now()) @map("created_at")
+  events    Event[]
+  @@map("categories")
+}
+
+model Speaker {
+  id        Int      @id @default(autoincrement())
+  name      String
+  role      String
+  createdAt DateTime @default(now()) @map("created_at")
+  events    Event[]
+  @@map("speakers")
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  name        String
+  tanggal     DateTime
+  description String
+  categoryId  Int      @map("category_id")
+  pembicaraId Int      @map("pembicara_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  category    Category @relation(fields: [categoryId], references: [id])
+  pembicara   Speaker  @relation(fields: [pembicaraId], references: [id])
+  @@map("events")
+}
