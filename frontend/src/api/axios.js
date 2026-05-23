@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'http://localhost:5000/api'
+  baseURL: 'https://uts-pemweb-production-b30f.up.railway.app/api'
 });
