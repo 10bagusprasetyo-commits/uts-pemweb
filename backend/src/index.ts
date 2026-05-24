@@ -14,12 +14,8 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://uts-pemweb-lake.vercel.app',
-    'https://uts-pemweb-git-main-bagus-prasetyo-s-projects.vercel.app'
-  ],
-  credentials: true
+  origin: '*',
+  credentials: false
 }));
 app.use(express.json());
 
