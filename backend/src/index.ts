@@ -13,7 +13,14 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://uts-pemweb-lake.vercel.app',
+    'https://uts-pemweb-git-main-bagus-prasetyo-s-projects.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Pasang jalur pintunya (Routing API)
